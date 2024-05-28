@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=3 uid="uid://drdvf6gkt7uun"]
+
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_dyoj2"]
+[ext_resource type="Texture2D" uid="uid://dmaryhubxuu1m" path="res://assets/sprites/dialogue-background.png" id="2_0idmv"]
+[ext_resource type="Texture2D" uid="uid://733cldrut1w5" path="res://assets/sprites/background.png" id="2_am811"]
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_dyoj2")
+
+[node name="background" type="Polygon2D" parent="."]
+unique_name_in_owner = true
+texture_repeat = 2
+scale = Vector2(36, 27)
+color = Color(0.36258, 0.215561, 0.227944, 1)
+texture = ExtResource("2_am811")
+texture_scale = Vector2(36, 27)
+polygon = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
+uv = PackedVector2Array(16, 16, 0, 16, 0, 0, 16, 0)
+polygons = [PackedInt32Array(0, 1, 2, 3)]
+
+[node name="Dialogue-background" type="Sprite2D" parent="."]
+position = Vector2(2, 42)
+texture = ExtResource("2_0idmv")
+
+[node name="Dialogue-background2" type="Sprite2D" parent="."]
+position = Vector2(2, 120)
+texture = ExtResource("2_0idmv")
+
+[node name="Start" type="Button" parent="."]
+offset_left = -94.0
+offset_top = 18.0
+offset_right = 98.0
+offset_bottom = 66.0
+text = "Start"
+flat = true
+
+[node name="Exit" type="Button" parent="."]
+offset_left = -94.0
+offset_top = 96.0
+offset_right = 98.0
+offset_bottom = 144.0
+text = "Exit"
+flat = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+
+[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]

@@ -1,0 +1,130 @@
+[gd_scene load_steps=10 format=3 uid="uid://2xmdkriyjuu2"]
+
+[ext_resource type="Script" path="res://scenes/levels/death_screen.gd" id="1_4224d"]
+[ext_resource type="Texture2D" uid="uid://dmaryhubxuu1m" path="res://assets/sprites/dialogue-background.png" id="1_td8l3"]
+[ext_resource type="Texture2D" uid="uid://bygmwb4dt7p40" path="res://assets/sprites/ui_player_1.png" id="2_1fidv"]
+[ext_resource type="Texture2D" uid="uid://dw3d7mweqfw2q" path="res://assets/sprites/health_empty.png" id="3_ij51y"]
+[ext_resource type="AudioStream" uid="uid://cryqfy6uklpfu" path="res://assets/sounds/death.wav" id="4_676b8"]
+[ext_resource type="Texture2D" uid="uid://d2v5inproqgrb" path="res://assets/sprites/death_scr.png" id="5_yvpo3"]
+
+[sub_resource type="Animation" id="Animation_xtw3k"]
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_0vgl6"]
+resource_name = "deathscreen"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visibility_layer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0a63n"]
+_data = {
+"RESET": SubResource("Animation_xtw3k"),
+"deathscreen": SubResource("Animation_0vgl6")
+}
+
+[node name="death-screen" type="Node2D"]
+script = ExtResource("1_4224d")
+
+[node name="Dialogue-background" type="Sprite2D" parent="."]
+position = Vector2(9.53674e-07, -1)
+scale = Vector2(3.79167, 10.9167)
+texture = ExtResource("1_td8l3")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+
+[node name="UiPlayer1" type="Sprite2D" parent="."]
+position = Vector2(-240, -104)
+texture = ExtResource("2_1fidv")
+
+[node name="HealthEmpty" type="Sprite2D" parent="."]
+position = Vector2(-256, -87.875)
+scale = Vector2(1, 154.25)
+texture = ExtResource("3_ij51y")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_676b8")
+autoplay = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../DeathScr")
+libraries = {
+"": SubResource("AnimationLibrary_0a63n")
+}
+
+[node name="DeathScr" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+texture = ExtResource("5_yvpo3")
+
+[node name="Question" type="Label" parent="DeathScr"]
+offset_left = -179.0
+offset_top = 62.0
+offset_right = 1253.0
+offset_bottom = 218.0
+scale = Vector2(0.25, 0.25)
+theme_override_font_sizes/font_size = 64
+text = "Ending #1: Fish and Chips"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Dialogue-background2" type="Sprite2D" parent="DeathScr"]
+position = Vector2(163, 149)
+texture = ExtResource("1_td8l3")
+
+[node name="Dialogue-background3" type="Sprite2D" parent="DeathScr"]
+position = Vector2(-155, 149)
+texture = ExtResource("1_td8l3")
+
+[node name="Start" type="Button" parent="DeathScr"]
+offset_left = 67.0
+offset_top = 125.0
+offset_right = 259.0
+offset_bottom = 173.0
+text = "Try Again"
+flat = true
+
+[node name="Exit" type="Button" parent="DeathScr"]
+offset_left = -251.0
+offset_top = 125.0
+offset_right = -59.0
+offset_bottom = 173.0
+text = "Main Menu"
+flat = true
+
+[connection signal="button_down" from="DeathScr/Start" to="." method="_on_start_button_down"]
+[connection signal="button_down" from="DeathScr/Exit" to="." method="_on_exit_button_down"]

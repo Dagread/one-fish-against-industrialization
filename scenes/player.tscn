@@ -1,0 +1,49 @@
+[gd_scene load_steps=9 format=3 uid="uid://r0qki4mcon13"]
+
+[ext_resource type="SpriteFrames" uid="uid://cs27g0cadrq2m" path="res://animations/player.tres" id="1_do4ao"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_gr2e5"]
+[ext_resource type="PackedScene" uid="uid://bnibx6013tf1i" path="res://scenes/laser.tscn" id="2_dx2sw"]
+[ext_resource type="PackedScene" uid="uid://dt1lksnhg6won" path="res://scenes/health_component.tscn" id="3_ontio"]
+[ext_resource type="PackedScene" uid="uid://b00uwqiee4f81" path="res://scenes/hitbox_component.tscn" id="4_kkqjy"]
+[ext_resource type="AudioStream" uid="uid://cuum82mpbbhwx" path="res://assets/sounds/laserShoot.wav" id="6_evqlx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ab6iw"]
+radius = 7.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jqtqa"]
+radius = 5.0
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+position = Vector2(0, 2)
+collision_layer = 0
+script = ExtResource("1_gr2e5")
+ProjectileScene = ExtResource("2_dx2sw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-2, -3)
+sprite_frames = ExtResource("1_do4ao")
+animation = &"idle"
+flip_h = true
+
+[node name="Collisions" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -3)
+shape = SubResource("CircleShape2D_ab6iw")
+
+[node name="HealthComponent" parent="." instance=ExtResource("3_ontio")]
+MAX_HEALTH = 30
+play_hurt_sound = false
+
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_kkqjy")]
+collision_layer = 2
+collision_mask = 0
+health_component = NodePath("../HealthComponent")
+
+[node name="Hitbox" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(0, -3)
+shape = SubResource("CircleShape2D_jqtqa")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_evqlx")
+
+[connection signal="health_depleted" from="HealthComponent" to="." method="_on_health_component_health_depleted"]
+[connection signal="area_shape_entered" from="HitboxComponent" to="." method="_on_hitbox_component_area_shape_entered"]

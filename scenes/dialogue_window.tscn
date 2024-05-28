@@ -1,0 +1,92 @@
+[gd_scene load_steps=6 format=3 uid="uid://b5bon8bpqjvpy"]
+
+[ext_resource type="Script" path="res://scripts/dialogue.gd" id="1_poqsg"]
+[ext_resource type="Texture2D" uid="uid://dmaryhubxuu1m" path="res://assets/sprites/dialogue-background.png" id="1_xjr8r"]
+[ext_resource type="Texture2D" uid="uid://wtqnpy76a0pu" path="res://assets/sprites/portrait-background.png" id="1_ylmup"]
+[ext_resource type="Texture2D" uid="uid://cgx65yfj230yc" path="res://assets/sprites/temp-boss-portrait.png" id="2_hgbk5"]
+[ext_resource type="AudioStream" uid="uid://c6rk5eaughgg" path="res://assets/sounds/synth.wav" id="5_8jp5p"]
+
+[node name="DialogueWindow" type="Node2D"]
+script = ExtResource("1_poqsg")
+
+[node name="Dialogue-background" type="Sprite2D" parent="."]
+texture = ExtResource("1_xjr8r")
+
+[node name="Speech" type="Node2D" parent="."]
+
+[node name="PortraitBackground" type="Sprite2D" parent="Speech"]
+position = Vector2(-72, 0)
+texture = ExtResource("1_ylmup")
+
+[node name="Portrait" type="Sprite2D" parent="Speech"]
+position = Vector2(-72, 0)
+texture = ExtResource("2_hgbk5")
+
+[node name="Text" type="Label" parent="Speech"]
+offset_left = -48.0
+offset_top = -16.0
+offset_right = 500.0
+offset_bottom = 112.0
+scale = Vector2(0.25, 0.25)
+theme_override_font_sizes/font_size = 26
+text = "ACTUALLY, the rules of the ocean are as follows: you are either a smart fella, or a fart smella! And I take showers very often!"
+autowrap_mode = 2
+
+[node name="Respond" type="Node2D" parent="."]
+
+[node name="Question" type="Label" parent="Respond"]
+offset_left = -88.0
+offset_top = -16.0
+offset_right = 620.0
+offset_bottom = 20.0
+scale = Vector2(0.25, 0.25)
+theme_override_font_sizes/font_size = 26
+text = "Don't you think I'm smart?"
+autowrap_mode = 2
+
+[node name="Option1" type="Label" parent="Respond"]
+offset_left = -88.0
+offset_top = -3.0
+offset_right = 264.0
+offset_bottom = 33.0
+scale = Vector2(0.25, 0.25)
+theme_override_font_sizes/font_size = 26
+text = "1) \"No you're not!\""
+autowrap_mode = 2
+
+[node name="Option2" type="Label" parent="Respond"]
+offset_top = -3.0
+offset_right = 352.0
+offset_bottom = 33.0
+scale = Vector2(0.25, 0.25)
+theme_override_font_sizes/font_size = 26
+text = "2) \"Some may think so\""
+autowrap_mode = 2
+
+[node name="Option3" type="Label" parent="Respond"]
+offset_left = -88.0
+offset_top = 7.0
+offset_right = 264.0
+offset_bottom = 43.0
+scale = Vector2(0.25, 0.25)
+theme_override_font_sizes/font_size = 26
+text = "3) Hit him with Calculus 2"
+autowrap_mode = 2
+
+[node name="Option4" type="Label" parent="Respond"]
+offset_top = 7.0
+offset_right = 352.0
+offset_bottom = 43.0
+scale = Vector2(0.25, 0.25)
+theme_override_font_sizes/font_size = 26
+text = "4) \"Nuh-uh\""
+autowrap_mode = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_8jp5p")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

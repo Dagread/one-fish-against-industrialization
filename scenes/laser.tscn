@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://bnibx6013tf1i"]
+
+[ext_resource type="Script" path="res://scripts/laser.gd" id="1_whsof"]
+[ext_resource type="Texture2D" uid="uid://63yx6dc1p3pq" path="res://assets/sprites/laser.png" id="1_x2g5o"]
+[ext_resource type="PackedScene" uid="uid://ccm7ln4u0xpm2" path="res://scenes/weapon.tscn" id="3_23cs7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qm1jf"]
+size = Vector2(4, 10)
+
+[sub_resource type="Gradient" id="Gradient_gh68x"]
+colors = PackedColorArray(1, 1, 1, 1, 0.133333, 0.12549, 0.203922, 0)
+
+[node name="Laser" type="Node2D"]
+script = ExtResource("1_whsof")
+
+[node name="Weapon" parent="." instance=ExtResource("3_23cs7")]
+collision_layer = 8
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Weapon"]
+shape = SubResource("RectangleShape2D_qm1jf")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(0, 1)
+amount = 14
+lifetime = 0.5
+direction = Vector2(0, 1)
+spread = 0.0
+gravity = Vector2(0, 0)
+angular_velocity_min = 256.82
+angular_velocity_max = 720.0
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+color_ramp = SubResource("Gradient_gh68x")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_x2g5o")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="area_entered" from="Weapon" to="." method="_on_weapon_area_entered"]
+[connection signal="area_shape_entered" from="Weapon" to="." method="_on_weapon_area_shape_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

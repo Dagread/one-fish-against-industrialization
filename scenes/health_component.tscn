@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dt1lksnhg6won"]
+
+[ext_resource type="Script" path="res://scripts/health.gd" id="1_u3myr"]
+[ext_resource type="AudioStream" uid="uid://gdad7u1jj6yb" path="res://assets/sounds/hitHurt.wav" id="2_5bjoa"]
+
+[node name="HealthComponent" type="Node2D"]
+script = ExtResource("1_u3myr")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_5bjoa")

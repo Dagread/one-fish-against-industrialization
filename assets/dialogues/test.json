@@ -1,0 +1,132 @@
+{
+	"dialogue": {
+		"start": {
+			"text": "Hello there Fish, my dearest friend! (press space)",
+			"next": "start2",
+			"sentiment_change": 0,
+			"speed": 1
+		},
+		"start2": {
+			"text": "How have you been? (press 1 or 2 on your keyboard)",
+			"answers": [
+				{"text": "Who are you?", "next": "who_are", "sentiment_change": 0},
+				{"text": "Not very good", "next": "conclusion", "sentiment_change": 0}
+			],
+			"speed": 1
+		},
+		"who_are": {
+			"text": "Me?",
+			"next": "who2",
+			"sentiment_change": 0,
+			"speed": 0
+		},
+		"who2": {
+			"text": "I am your best friend, %TemporaryName01%, did you forget?",
+			"next": "maybe",
+			"sentiment_change": 0,
+			"speed": 1
+		},
+		"maybe": {
+			"text": "Maybe you just forgot me because of the stress you've been experiencing recently...",
+			"next": "maybe1",
+			"sentiment_change": 0,
+			"speed": 1
+		},
+		"maybe1": {
+			"text": "But don't worry! I don't blame you. You know...",
+			"next": "conclusion",
+			"sentiment_change": 0,
+			"speed": 1
+		},
+		"conclusion": {
+			"text": "If my family died in an oil spill I would be sad too...",
+			"next": "revenge",
+			"sentiment_change": 0,
+			"speed": 0
+		},
+		"revenge": {
+			"text": "You know, I heard about one method that helps with coping with such stress.",
+			"next": "revenge1",
+			"sentiment_change": 0,
+			"speed": 1
+		},
+		"revenge1": {
+			"text": "It's called...",
+			"next": "revenge2",
+			"sentiment_change": 0,
+			"speed": 1
+		},
+		"revenge2": {
+			"text": "REVENGE",
+			"next": "question_pre",
+			"sentiment_change": 0,
+			"speed": 0
+		},
+		"question_pre": {
+			"text": "I can help you with that!",
+			"next": "question",
+			"sentiment_change": 0,
+			"speed": 1
+		},
+		"question": {
+			"text": "Do you need help? (tutorial)",
+			"answers": [
+				{"text": "Yes, I would like some help.", "next": "help", "sentiment_change": 0},
+				{"text": "No, I know what I'm doing", "next": "no_help", "sentiment_change": 0}
+			],
+			"speed": 1
+		},
+		"help": {
+			"text": "Alrighty, sounds awesome, you can always count on me.",
+			"next": "help2",
+			"sentiment_change": 0,
+			"speed": 1
+		},
+		"help2": {
+			"text": "So see that worm? You controll it with your mouse.",
+			"next": "help3",
+			"sentiment_change": 0,
+			"speed": 1
+		},
+		"help3": {
+			"text": "And by clicking left mouse button you dash in the direction of the worm.",
+			"next": "help4",
+			"sentiment_change": 0,
+			"speed": 1
+		},
+		"help4": {
+			"text": "And you shoot every time you dash!",
+			"next": "ask_bubbles",
+			"sentiment_change": 0,
+			"speed": 1
+		},
+		"no_help": {
+			"text": "Alright, you know the deal. See ya!",
+			"action": ["set_state", "end", "kill_boss"],
+			"next": null,
+			"sentiment_change": 0,
+			"speed": 1
+		},
+		"ask_bubbles": {
+			"text": "Now fight me.",
+			"action": ["waves", 0, "current", 0, 0, "set_state", "battle"],
+			"next": null,
+			"sentiment_change": 0,
+			"speed": 0
+		},
+		"halfway": {
+			"text": "I can see you are learning fast! How about we increase the difficulty!",
+			"action": ["waves", 0, "current", 0, 0, "set_state", "battle", "attack", "tutorial"],
+			"next": null,
+			"sentiment_change": -1,
+			"speed": 1
+		},
+		"death": {
+			"text": "Now you are ready to go, I think the oil rig over there would be a good place to start your revenge.",
+			"action": ["waves", 0, "current", 0, 0, "set_state", "end", "kill_boss"],
+			"next": null,
+			"sentiment_change": -2,
+			"speed": 1
+		},
+	}
+}

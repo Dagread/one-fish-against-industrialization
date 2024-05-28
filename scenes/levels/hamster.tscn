@@ -1,0 +1,153 @@
+[gd_scene load_steps=27 format=3 uid="uid://d0c3vm5orby3b"]
+
+[ext_resource type="Script" path="res://scripts/scene-manager.gd" id="1_110a8"]
+[ext_resource type="PackedScene" uid="uid://dbdc0on8533f0" path="res://scenes/attacks/AttackMaster.tscn" id="2_mgpst"]
+[ext_resource type="PackedScene" uid="uid://dgecbqrdfcrgi" path="res://scenes/portal.tscn" id="3_pcg6b"]
+[ext_resource type="Texture2D" uid="uid://733cldrut1w5" path="res://assets/sprites/background.png" id="4_mhw5v"]
+[ext_resource type="PackedScene" uid="uid://sb74u4uy60lm" path="res://scenes/boss.tscn" id="5_4a8br"]
+[ext_resource type="Script" path="res://scripts/hamster_boss.gd" id="6_lfpc1"]
+[ext_resource type="PackedScene" uid="uid://dt1lksnhg6won" path="res://scenes/health_component.tscn" id="7_4jlbr"]
+[ext_resource type="Texture2D" uid="uid://b5hjtwad835m2" path="res://assets/sprites/hamster.png" id="8_rt2c6"]
+[ext_resource type="PackedScene" uid="uid://bsd6xpx7mnoeh" path="res://scenes/area_damage.tscn" id="9_5dvkp"]
+[ext_resource type="PackedScene" uid="uid://b00uwqiee4f81" path="res://scenes/hitbox_component.tscn" id="10_hbas7"]
+[ext_resource type="AudioStream" uid="uid://br7pbdl2d7q7r" path="res://assets/sounds/explosion.wav" id="11_v6xqc"]
+[ext_resource type="PackedScene" uid="uid://b5bon8bpqjvpy" path="res://scenes/dialogue_window.tscn" id="12_8capu"]
+[ext_resource type="JSON" path="res://assets/dialogues/hamster.json" id="13_k5r8w"]
+[ext_resource type="Texture2D" uid="uid://bqs5e8vd6ovyo" path="res://assets/sprites/hamster_portrait.png" id="14_jjuk0"]
+[ext_resource type="PackedScene" uid="uid://r0qki4mcon13" path="res://scenes/player.tscn" id="15_nk35w"]
+[ext_resource type="PackedScene" uid="uid://bbuogamntsgit" path="res://scenes/healthbar.tscn" id="16_r8p8i"]
+[ext_resource type="PackedScene" uid="uid://cqjvx8kvh0wbg" path="res://scenes/cursor.tscn" id="17_m6d0l"]
+[ext_resource type="Script" path="res://scripts/scene_manager_wrap.gd" id="18_2msxy"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_f0rdr"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ji417"]
+normal = Vector2(-1, 0)
+distance = -144.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_6cbda"]
+normal = Vector2(0, 1)
+distance = -135.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_6xfc5"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_f4vwa"]
+distance = -135.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_aypf5"]
+radius = 24.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2s6xh"]
+radius = 20.025
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h3t30"]
+radius = 29.0
+
+[node name="OilRig" type="Node2D" node_paths=PackedStringArray("BOSS", "dialogue")]
+script = ExtResource("1_110a8")
+BOSS = NodePath("Boss")
+attack_master_scene = ExtResource("2_mgpst")
+dialogue = NodePath("DialogueWindow")
+portal = ExtResource("3_pcg6b")
+next_scene = "next"
+
+[node name="background" type="Polygon2D" parent="."]
+unique_name_in_owner = true
+texture_repeat = 2
+scale = Vector2(36, 27)
+color = Color(3.22476e-06, 0.813889, 0.337274, 1)
+texture = ExtResource("4_mhw5v")
+texture_scale = Vector2(36, 27)
+polygon = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
+uv = PackedVector2Array(16, 16, 0, 16, 0, 0, 16, 0)
+polygons = [PackedInt32Array(0, 1, 2, 3)]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+
+[node name="Walls" type="StaticBody2D" parent="."]
+position = Vector2(0, 81)
+physics_material_override = SubResource("PhysicsMaterial_f0rdr")
+
+[node name="east" type="CollisionShape2D" parent="Walls"]
+position = Vector2(144, -81)
+shape = SubResource("WorldBoundaryShape2D_ji417")
+
+[node name="north" type="CollisionShape2D" parent="Walls"]
+position = Vector2(0, -162)
+shape = SubResource("WorldBoundaryShape2D_6cbda")
+
+[node name="west" type="CollisionShape2D" parent="Walls"]
+position = Vector2(-288, -81)
+shape = SubResource("WorldBoundaryShape2D_6xfc5")
+
+[node name="south" type="CollisionShape2D" parent="Walls"]
+shape = SubResource("WorldBoundaryShape2D_f4vwa")
+
+[node name="Boss" parent="." node_paths=PackedStringArray("health", "scene_manager") instance=ExtResource("5_4a8br")]
+position = Vector2(0, -152)
+script = ExtResource("6_lfpc1")
+health = NodePath("HealthComponent")
+scene_manager = NodePath("../SceneManager")
+
+[node name="HealthComponent" parent="Boss" instance=ExtResource("7_4jlbr")]
+MAX_HEALTH = 200
+
+[node name="Sprite2D" type="Sprite2D" parent="Boss"]
+texture = ExtResource("8_rt2c6")
+
+[node name="AreaDamage" parent="Boss" instance=ExtResource("9_5dvkp")]
+collision_layer = 8
+collision_mask = 2
+attack_damage = 5.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boss/AreaDamage"]
+shape = SubResource("CircleShape2D_aypf5")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Boss"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boss/StaticBody2D"]
+shape = SubResource("CircleShape2D_2s6xh")
+
+[node name="Hitbox" parent="Boss" node_paths=PackedStringArray("health_component") instance=ExtResource("10_hbas7")]
+collision_layer = 4
+collision_mask = 0
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boss/Hitbox"]
+shape = SubResource("CircleShape2D_h3t30")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Boss"]
+stream = ExtResource("11_v6xqc")
+
+[node name="Timer" type="Timer" parent="Boss"]
+wait_time = 30.0
+one_shot = true
+
+[node name="DialogueWindow" parent="." instance=ExtResource("12_8capu")]
+position = Vector2(-1, 155)
+scale = Vector2(2, 2)
+json_file = ExtResource("13_k5r8w")
+icon = ExtResource("14_jjuk0")
+
+[node name="CharacterBody2D" parent="." node_paths=PackedStringArray("healthbar") instance=ExtResource("15_nk35w")]
+position = Vector2(-16, -4)
+healthbar = NodePath("../Healthbar")
+
+[node name="Healthbar" parent="." instance=ExtResource("16_r8p8i")]
+position = Vector2(-272, -200)
+
+[node name="Cursor" parent="." instance=ExtResource("17_m6d0l")]
+position = Vector2(54, -6)
+
+[node name="SceneManager" type="Node2D" parent="." node_paths=PackedStringArray("scene_manager")]
+unique_name_in_owner = true
+script = ExtResource("18_2msxy")
+scene_manager = NodePath("..")
+
+[node name="AttackManager" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[connection signal="finished" from="Boss/AudioStreamPlayer" to="Boss" method="_on_audio_stream_player_finished"]
+[connection signal="timeout" from="Boss/Timer" to="Boss" method="_on_timer_timeout"]

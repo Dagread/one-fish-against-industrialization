@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://coj6ls230lcwn"]
+
+[ext_resource type="PackedScene" uid="uid://c1t26mrhibnee" path="res://scenes/rotating_spawner.tscn" id="1_t4key"]
+[ext_resource type="PackedScene" uid="uid://clmeh8cdm04qp" path="res://scenes/spawner.tscn" id="2_epfyu"]
+
+[node name="Oil1" type="Node2D"]
+
+[node name="RotatingSpawner" parent="." instance=ExtResource("1_t4key")]
+rotation_speed = 0.25
+
+[node name="Spawner3" parent="RotatingSpawner" node_paths=PackedStringArray("bullet_collector") instance=ExtResource("2_epfyu")]
+rotation = 3.14159
+bullet_collector = NodePath("../..")
+
+[node name="Spawner2" parent="RotatingSpawner" node_paths=PackedStringArray("bullet_collector") instance=ExtResource("2_epfyu")]
+bullet_collector = NodePath("../..")

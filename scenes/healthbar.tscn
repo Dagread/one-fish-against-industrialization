@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://bbuogamntsgit"]
+
+[ext_resource type="Texture2D" uid="uid://bygmwb4dt7p40" path="res://assets/sprites/ui_player_1.png" id="1_lxarw"]
+[ext_resource type="Script" path="res://scripts/healthbar.gd" id="1_ujfyu"]
+[ext_resource type="Texture2D" uid="uid://dw3d7mweqfw2q" path="res://assets/sprites/health_empty.png" id="2_xr8pr"]
+[ext_resource type="Texture2D" uid="uid://ciqskas3tu5tx" path="res://assets/sprites/health_fill.png" id="3_mdvqb"]
+
+[node name="Healthbar" type="Node2D"]
+script = ExtResource("1_ujfyu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(32, 96)
+texture = ExtResource("1_lxarw")
+
+[node name="HealthBack" type="Sprite2D" parent="."]
+position = Vector2(16, 112)
+scale = Vector2(1, 154)
+texture = ExtResource("2_xr8pr")
+
+[node name="HealthFill" type="Sprite2D" parent="."]
+position = Vector2(16, 189)
+scale = Vector2(1, 154)
+texture = ExtResource("3_mdvqb")
+offset = Vector2(0, -0.5)

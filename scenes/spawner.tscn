@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://clmeh8cdm04qp"]
+
+[ext_resource type="Script" path="res://scripts/spawner.gd" id="1_ck0ac"]
+[ext_resource type="PackedScene" uid="uid://c3psxrhl21w13" path="res://scenes/projectile.tscn" id="2_gpf1y"]
+
+[node name="Spawner" type="Node2D"]
+script = ExtResource("1_ck0ac")
+projectile = ExtResource("2_gpf1y")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Projectile" parent="." instance=ExtResource("2_gpf1y")]
+displaying = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

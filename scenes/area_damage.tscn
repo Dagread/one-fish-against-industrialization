@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bsd6xpx7mnoeh"]
+
+[ext_resource type="Script" path="res://scripts/area_damage.gd" id="1_6s5wk"]
+
+[node name="AreaDamage" type="Area2D"]
+script = ExtResource("1_6s5wk")
+
+[connection signal="area_shape_entered" from="." to="." method="_on_area_shape_entered"]
+[connection signal="area_shape_exited" from="." to="." method="_on_area_shape_exited"]

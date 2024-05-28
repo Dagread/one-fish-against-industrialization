@@ -1,0 +1,16 @@
+[gd_scene load_steps=7 format=3 uid="uid://dbdc0on8533f0"]
+
+[ext_resource type="Script" path="res://scripts/attack_master.gd" id="1_dctyx"]
+[ext_resource type="PackedScene" uid="uid://6jepp14vtj23" path="res://scenes/attacks/tutorial.tscn" id="2_35kt7"]
+[ext_resource type="PackedScene" uid="uid://coj6ls230lcwn" path="res://scenes/attacks/oil1.tscn" id="3_3osq5"]
+[ext_resource type="PackedScene" uid="uid://b5q8w3fd4ufyu" path="res://scenes/attacks/oil2.tscn" id="4_6hcqg"]
+[ext_resource type="PackedScene" uid="uid://b2jyc3j7vfulo" path="res://scenes/attacks/oil3.tscn" id="5_6reaa"]
+[ext_resource type="PackedScene" uid="uid://dov6c126es662" path="res://scenes/attacks/ham1.tscn" id="6_2pc5j"]
+
+[node name="AttackMaster" type="Node2D"]
+script = ExtResource("1_dctyx")
+tutorial = ExtResource("2_35kt7")
+oil1 = ExtResource("3_3osq5")
+oil2 = ExtResource("4_6hcqg")
+oil3 = ExtResource("5_6reaa")
+ham = ExtResource("6_2pc5j")

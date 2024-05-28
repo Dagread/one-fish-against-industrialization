@@ -1,0 +1,81 @@
+[gd_scene load_steps=14 format=3 uid="uid://bkhp7uxvcfasc"]
+
+[ext_resource type="PackedScene" uid="uid://r0qki4mcon13" path="res://scenes/player.tscn" id="1_3uvnv"]
+[ext_resource type="Texture2D" uid="uid://733cldrut1w5" path="res://assets/sprites/background.png" id="1_gxjrg"]
+[ext_resource type="Script" path="res://scripts/scene-manager.gd" id="3_e2mvt"]
+[ext_resource type="PackedScene" uid="uid://bbuogamntsgit" path="res://scenes/healthbar.tscn" id="5_1l24n"]
+[ext_resource type="PackedScene" uid="uid://cqjvx8kvh0wbg" path="res://scenes/cursor.tscn" id="6_tvstm"]
+[ext_resource type="PackedScene" uid="uid://b5bon8bpqjvpy" path="res://scenes/dialogue_window.tscn" id="8_7wlu7"]
+[ext_resource type="JSON" path="res://assets/dialogues/test.json" id="8_aiycv"]
+[ext_resource type="Texture2D" uid="uid://i11e48hac2js" path="res://assets/sprites/temp-boss.png" id="9_0o5ra"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hm0r6"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_a8c87"]
+normal = Vector2(-1, 0)
+distance = -144.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_c4ass"]
+normal = Vector2(0, 1)
+distance = -135.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1mdmy"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_vjk2a"]
+distance = -135.0
+
+[node name="test-level" type="Node2D"]
+
+[node name="background" type="Polygon2D" parent="."]
+unique_name_in_owner = true
+texture_repeat = 2
+scale = Vector2(36, 27)
+texture = ExtResource("1_gxjrg")
+texture_scale = Vector2(36, 27)
+polygon = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
+uv = PackedVector2Array(16, 16, 0, 16, 0, 0, 16, 0)
+polygons = [PackedInt32Array(0, 1, 2, 3)]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+
+[node name="player" parent="." instance=ExtResource("1_3uvnv")]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, 81)
+physics_material_override = SubResource("PhysicsMaterial_hm0r6")
+
+[node name="east" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(144, -81)
+shape = SubResource("WorldBoundaryShape2D_a8c87")
+
+[node name="north" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -162)
+shape = SubResource("WorldBoundaryShape2D_c4ass")
+
+[node name="west" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-288, -81)
+shape = SubResource("WorldBoundaryShape2D_1mdmy")
+
+[node name="south" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_vjk2a")
+
+[node name="sceneManager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_e2mvt")
+CURRENT_SPEED = Vector2(2, 2)
+
+[node name="Healthbar" parent="." instance=ExtResource("5_1l24n")]
+
+[node name="Cursor" parent="." instance=ExtResource("6_tvstm")]
+position = Vector2(54, -6)
+
+[node name="Temp-boss" type="Sprite2D" parent="."]
+position = Vector2(0, -150)
+texture = ExtResource("9_0o5ra")
+
+[node name="DialogueWindow" parent="." instance=ExtResource("8_7wlu7")]
+position = Vector2(-1, 155)
+scale = Vector2(2, 2)
+json_file = ExtResource("8_aiycv")

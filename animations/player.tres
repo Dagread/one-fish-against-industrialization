@@ -1,0 +1,49 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://cs27g0cadrq2m"]
+
+[ext_resource type="Texture2D" uid="uid://bpm6c260ykg6f" path="res://assets/sprites/player-main.png" id="1_mi0md"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d6w8b"]
+atlas = ExtResource("1_mi0md")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ojjvr"]
+atlas = ExtResource("1_mi0md")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dvee8"]
+atlas = ExtResource("1_mi0md")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h4rf4"]
+atlas = ExtResource("1_mi0md")
+region = Rect2(0, 0, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d6w8b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ojjvr")
+}],
+"loop": true,
+"name": &"damage",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dvee8")
+}],
+"loop": true,
+"name": &"dash",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h4rf4")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqjvx8kvh0wbg"]
+
+[ext_resource type="Texture2D" uid="uid://cqqok78r5fy3v" path="res://assets/sprites/worm.png" id="1_4xiaa"]
+[ext_resource type="Script" path="res://scripts/cursor.gd" id="2_073nb"]
+
+[node name="Cursor" type="Sprite2D"]
+position = Vector2(-8, -8)
+texture = ExtResource("1_4xiaa")
+script = ExtResource("2_073nb")

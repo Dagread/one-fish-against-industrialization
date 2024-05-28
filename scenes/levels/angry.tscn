@@ -1,0 +1,146 @@
+[gd_scene load_steps=10 format=3 uid="uid://drdigmk7s4hka"]
+
+[ext_resource type="Script" path="res://scenes/levels/death_screen.gd" id="1_ttg0j"]
+[ext_resource type="Texture2D" uid="uid://dmaryhubxuu1m" path="res://assets/sprites/dialogue-background.png" id="2_3b5m7"]
+[ext_resource type="Texture2D" uid="uid://wtqnpy76a0pu" path="res://assets/sprites/portrait-background.png" id="4_g567v"]
+[ext_resource type="AudioStream" uid="uid://cryqfy6uklpfu" path="res://assets/sounds/death.wav" id="5_4yyqt"]
+[ext_resource type="Texture2D" uid="uid://dk4mre6i2deb2" path="res://assets/sprites/hamster_dad_portrait.png" id="5_gt0m1"]
+[ext_resource type="Texture2D" uid="uid://bht66q8wguy4a" path="res://assets/sprites/revenge.png" id="6_d7esc"]
+
+[sub_resource type="Animation" id="Animation_xtw3k"]
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_0vgl6"]
+resource_name = "deathscreen"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visibility_layer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0a63n"]
+_data = {
+"RESET": SubResource("Animation_xtw3k"),
+"deathscreen": SubResource("Animation_0vgl6")
+}
+
+[node name="death-screen" type="Node2D"]
+script = ExtResource("1_ttg0j")
+
+[node name="Dialogue-background" type="Sprite2D" parent="."]
+position = Vector2(9.53674e-07, -1)
+scale = Vector2(3.79167, 10.9167)
+texture = ExtResource("2_3b5m7")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_4yyqt")
+autoplay = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../DeathScr")
+libraries = {
+"": SubResource("AnimationLibrary_0a63n")
+}
+
+[node name="Speech" type="Node2D" parent="."]
+position = Vector2(-1, 155)
+scale = Vector2(2, 2)
+
+[node name="Dialogue-background2" type="Sprite2D" parent="Speech"]
+texture = ExtResource("2_3b5m7")
+
+[node name="PortraitBackground" type="Sprite2D" parent="Speech"]
+position = Vector2(-72, 0)
+texture = ExtResource("4_g567v")
+
+[node name="Portrait" type="Sprite2D" parent="Speech"]
+position = Vector2(-72, 0)
+texture = ExtResource("5_gt0m1")
+
+[node name="Text" type="Label" parent="Speech"]
+offset_left = -48.0
+offset_top = -16.0
+offset_right = 500.0
+offset_bottom = 112.0
+scale = Vector2(0.25, 0.25)
+theme_override_font_sizes/font_size = 26
+text = "LEAVE ME ALONE YOU SAVAGE BEA-"
+autowrap_mode = 2
+
+[node name="DeathScr" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+texture = ExtResource("6_d7esc")
+
+[node name="Question" type="Label" parent="DeathScr"]
+offset_left = -179.0
+offset_top = 62.0
+offset_right = 1253.0
+offset_bottom = 218.0
+scale = Vector2(0.25, 0.25)
+theme_override_font_sizes/font_size = 64
+text = "Ending #3: Revenge"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Dialogue-background2" type="Sprite2D" parent="DeathScr"]
+position = Vector2(163, 149)
+texture = ExtResource("2_3b5m7")
+
+[node name="Dialogue-background3" type="Sprite2D" parent="DeathScr"]
+position = Vector2(-155, 149)
+texture = ExtResource("2_3b5m7")
+
+[node name="Start" type="Button" parent="DeathScr"]
+offset_left = 67.0
+offset_top = 125.0
+offset_right = 259.0
+offset_bottom = 173.0
+text = "Try Again"
+flat = true
+
+[node name="Exit" type="Button" parent="DeathScr"]
+offset_left = -251.0
+offset_top = 125.0
+offset_right = -59.0
+offset_bottom = 173.0
+text = "Main Menu"
+flat = true
+
+[connection signal="pressed" from="DeathScr/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="DeathScr/Exit" to="." method="_on_exit_pressed"]

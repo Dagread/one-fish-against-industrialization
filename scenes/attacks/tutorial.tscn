@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://6jepp14vtj23"]
+
+[ext_resource type="Script" path="res://scripts/general_attack.gd" id="1_5f0qt"]
+[ext_resource type="PackedScene" uid="uid://clmeh8cdm04qp" path="res://scenes/spawner.tscn" id="3_nyjrn"]
+
+[node name="Tutorial" type="Node2D"]
+script = ExtResource("1_5f0qt")
+
+[node name="Spawner2" parent="." node_paths=PackedStringArray("bullet_collector") instance=ExtResource("3_nyjrn")]
+position = Vector2(243, -37)
+rotation = 3.14159
+bullet_collector = NodePath("..")
+
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]

@@ -1,0 +1,87 @@
+[gd_scene load_steps=11 format=3 uid="uid://dogbx408utehu"]
+
+[ext_resource type="Texture2D" uid="uid://bgwejdp2gymt6" path="res://assets/sprites/temp-wildcard.png" id="1_qs1uq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_woi6a"]
+atlas = ExtResource("1_qs1uq")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1x8fd"]
+atlas = ExtResource("1_qs1uq")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l554r"]
+atlas = ExtResource("1_qs1uq")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xc4kn"]
+atlas = ExtResource("1_qs1uq")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ftrs8"]
+atlas = ExtResource("1_qs1uq")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f35ao"]
+atlas = ExtResource("1_qs1uq")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ondl5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_woi6a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1x8fd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l554r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xc4kn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ftrs8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f35ao")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="GDScript" id="GDScript_o0s8k"]
+script/source = "extends AnimatedSprite2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+
+func _on_static_body_2d_body_entered(body):
+	if body.has_method(\"enable_shooting\"):
+		body.enable_shooting()
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jalo2"]
+size = Vector2(12, 12)
+
+[node name="Item" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_ondl5")
+frame_progress = 0.852503
+script = SubResource("GDScript_o0s8k")
+
+[node name="StaticBody2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_jalo2")
+
+[connection signal="body_entered" from="StaticBody2D" to="." method="_on_static_body_2d_body_entered"]

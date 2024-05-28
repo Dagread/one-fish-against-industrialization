@@ -1,0 +1,89 @@
+{
+	"dialogue": {
+		"start": {
+			"text": "Stop where you stand, foul creature!",
+			"next": "start1",
+			"sentiment_change": 0,
+			"speed": 1
+		},
+		"start1": {
+			"text": "I am the Guardian of the Sewage, I am the Sewage Rat!",
+			"next": "start2",
+			"sentiment_change": 0,
+			"speed": 1
+		},
+		"start2": {
+			"text": "Now who are you, smelly reptile?",
+			"answers": [
+				{"text": "Rat? I thought you were a hamster.", "next": "rat", "sentiment_change": 0},
+				{"text": "Hi, I'm Fish.", "next": "fish", "sentiment_change": 0}
+			],
+			"speed": 1
+		},
+		"fish": {
+			"text": "Hi Fish!",
+			"next": "prepare",
+			"sentiment_change": 0,
+			"speed": 1
+		},
+		"prepare": {
+			"text": "Prepare to DIE!",
+			"action": ["set_state", "battle"],
+			"next": null,
+			"sentiment_change": 0,
+			"speed": 0
+		},
+		"rat": {
+			"text": "I AM NOT A HAMSTER! I AM A FIERCE SEWAGE RAT!!",
+			"next": "prepare",
+			"sentiment_change": 0,
+			"speed": 0
+		},
+		"ouch": {
+			"text": "OUCH!!",
+			"next": "ouch1",
+			"sentiment_change": 0,
+			"speed": 1
+		},
+		"ouch1": {
+			"text": "...",
+			"next": "ouch2",
+			"sentiment_change": 0,
+			"speed": 0
+		},
+		"ouch2": {
+			"text": "you heard nothing.",
+			"action": ["waves", 0, "current", 0, 0, "set_state", "battle", "attack", "ham1"],
+			"next": null,
+			"sentiment_change": 0,
+			"speed": 0
+		},
+		"dad": {
+			"text": "I...",
+			"next": "dad1",
+			"sentiment_change": 0,
+			"speed": 0
+		},
+		"dad1": {
+			"text": "My dad...",
+			"action": ["set_state", "battle"],
+			"next": null,
+			"sentiment_change": 0,
+			"speed": 0
+		},
+		"death": {
+			"text": "Sorry dad... I am not coming home today...",
+			"action": ["kill_boss"],
+			"next": null,
+			"sentiment_change": 0,
+			"speed": 0
+		},
+		"scared": {
+			"text": "Well... this is awakward... okay bye!",
+			"action": ["kill_boss"],
+			"next": null,
+			"sentiment_change": 0,
+			"speed": 0
+		},
+	}
+}

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1t26mrhibnee"]
+
+[ext_resource type="Script" path="res://scripts/rotating_spawner.gd" id="1_jyvt1"]
+[ext_resource type="PackedScene" uid="uid://clmeh8cdm04qp" path="res://scenes/spawner.tscn" id="2_617ok"]
+
+[node name="RotatingSpawner" type="Node2D"]
+script = ExtResource("1_jyvt1")
+
+[node name="Spawner" parent="." instance=ExtResource("2_617ok")]

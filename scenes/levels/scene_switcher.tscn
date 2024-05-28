@@ -1,0 +1,32 @@
+[gd_scene load_steps=12 format=3 uid="uid://ddo088jngnxvx"]
+
+[ext_resource type="Script" path="res://scripts/scene_switcher.gd" id="1_ufdfw"]
+[ext_resource type="PackedScene" uid="uid://bkhp7uxvcfasc" path="res://scenes/levels/test-level.tscn" id="2_hguvt"]
+[ext_resource type="PackedScene" uid="uid://drdvf6gkt7uun" path="res://scenes/levels/main_menu.tscn" id="3_j0ljp"]
+[ext_resource type="PackedScene" uid="uid://2xmdkriyjuu2" path="res://scenes/levels/death_screen.tscn" id="4_o11ej"]
+[ext_resource type="AudioStream" uid="uid://dmotrrh5sfseo" path="res://assets/sounds/background_music.mp3" id="5_hbp4s"]
+[ext_resource type="PackedScene" uid="uid://b6xgx0sft8klu" path="res://scenes/levels/oil_rig.tscn" id="5_u3g23"]
+[ext_resource type="PackedScene" uid="uid://d0c3vm5orby3b" path="res://scenes/levels/hamster.tscn" id="6_uy6ot"]
+[ext_resource type="PackedScene" uid="uid://dq28yjd13e1h3" path="res://scenes/levels/boss_angry.tscn" id="7_d53h6"]
+[ext_resource type="PackedScene" uid="uid://dn2hxk1l1djoq" path="res://scenes/levels/boss_happy.tscn" id="8_wshol"]
+[ext_resource type="PackedScene" uid="uid://drdigmk7s4hka" path="res://scenes/levels/angry.tscn" id="9_44vb0"]
+[ext_resource type="PackedScene" uid="uid://tuvox2jbwa7f" path="res://scenes/levels/happy.tscn" id="10_15tv8"]
+
+[node name="SceneSwitcher" type="Node" node_paths=PackedStringArray("current_level")]
+script = ExtResource("1_ufdfw")
+current_level = NodePath("MainMenu")
+main_menu = ExtResource("3_j0ljp")
+tutorial = ExtResource("2_hguvt")
+death = ExtResource("4_o11ej")
+oil_rig = ExtResource("5_u3g23")
+hamster = ExtResource("6_uy6ot")
+evil_boss = ExtResource("7_d53h6")
+happy_boss = ExtResource("8_wshol")
+genocide_end = ExtResource("9_44vb0")
+happy_end = ExtResource("10_15tv8")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_hbp4s")
+autoplay = true
+
+[node name="MainMenu" parent="." instance=ExtResource("3_j0ljp")]

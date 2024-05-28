@@ -1,0 +1,49 @@
+{
+	"dialogue": {
+		"start": {
+			"text": "Hi! You must be that infamous Fish that inspires oil rigs and reunites hamster families!",
+			"next": "start1",
+			"sentiment_change": 0,
+			"speed": 1
+		},
+		"start1": {
+			"text": "Very glad to meet you! How can I help you?",
+			"next": "ask",
+			"sentiment_change": 0,
+			"speed": 1
+		},
+		"ask": {
+			"text": "What do you want?",
+			"answers": [
+				{"text": "My family...", "next": "answer", "sentiment_change": 0},
+				{"text": "We need to talk.", "next": "answer", "sentiment_change": 0}
+			],
+			"speed": 1
+		},
+		"answer": {
+			"text": "Yeah, I heard about your family. Im really sorry for what happened, it is partially my fault...............",
+			"next": "answer1",
+			"sentiment_change": 0,
+			"speed": 0
+		},
+		"answer1": {
+			"text": "You know what we could do? I've been thinking about retiring soon...",
+			"next": "answer2",
+			"sentiment_change": 0,
+			"speed": 1
+		},
+		"answer2": {
+			"text": "And I've heard a lot of good things about you. So..",
+			"next": "answer3",
+			"sentiment_change": 0,
+			"speed": 1
+		},
+		"answer3": {
+			"text": "I was thinking about giving you my position...",
+			"action": ["scene", "happy_end"],
+			"next": null,
+			"sentiment_change": 0,
+			"speed": 1
+		},
+	}
+}

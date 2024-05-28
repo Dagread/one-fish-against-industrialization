@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://dov6c126es662"]
+
+[ext_resource type="PackedScene" uid="uid://bvipiis3il1am" path="res://scenes/homing-projectile.tscn" id="1_dylfs"]
+[ext_resource type="PackedScene" uid="uid://c1t26mrhibnee" path="res://scenes/rotating_spawner.tscn" id="2_bqq36"]
+[ext_resource type="PackedScene" uid="uid://clmeh8cdm04qp" path="res://scenes/spawner.tscn" id="3_q4bqa"]
+
+[node name="Oil2" type="Node2D"]
+
+[node name="Projectile" parent="." instance=ExtResource("1_dylfs")]
+speed = 250.0
+randomness = 10
+
+[node name="RotatingSpawner2" parent="." instance=ExtResource("2_bqq36")]
+position = Vector2(119, 0)
+rotation_speed = 0.1
+
+[node name="Spawner3" parent="RotatingSpawner2" node_paths=PackedStringArray("bullet_collector") instance=ExtResource("3_q4bqa")]
+rotation = 1.5708
+spawn_rate = 1.0
+bullet_speed = 75.0
+bullet_collector = NodePath("../..")
+
+[node name="Spawner2" parent="RotatingSpawner2" node_paths=PackedStringArray("bullet_collector") instance=ExtResource("3_q4bqa")]
+rotation = -1.5708
+spawn_rate = 1.0
+bullet_speed = 75.0
+bullet_collector = NodePath("../..")
+
+[node name="RotatingSpawner" parent="." instance=ExtResource("2_bqq36")]
+position = Vector2(-112, 0)
+rotation_speed = 0.1
+
+[node name="Spawner3" parent="RotatingSpawner" node_paths=PackedStringArray("bullet_collector") instance=ExtResource("3_q4bqa")]
+rotation = 1.5708
+spawn_rate = 1.0
+bullet_speed = 75.0
+bullet_collector = NodePath("../..")
+
+[node name="Spawner2" parent="RotatingSpawner" node_paths=PackedStringArray("bullet_collector") instance=ExtResource("3_q4bqa")]
+rotation = -1.5708
+spawn_rate = 1.0
+bullet_speed = 75.0
+bullet_collector = NodePath("../..")

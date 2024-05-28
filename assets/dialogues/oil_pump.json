@@ -1,0 +1,92 @@
+{
+	"dialogue": {
+		"start": {
+			"text": "M U S T   P U M P   O I L",
+			"action": ["waves", 0, "current", 0, 0, "set_state", "battle", "attack", "oil1"],
+			"next": null,
+			"sentiment_change": 0,
+			"speed": 1
+		},
+		"what": {
+			"text": "W H A T   A R E   Y O U   D O I N G ?",
+			"next": "what2",
+			"sentiment_change": 0,
+			"speed": 1
+		},
+		"what2": {
+			"text": "F I G H T   M E !",
+			"answers": [
+				{"text": "Don't you have other things to do?", "next": "poet", "sentiment_change": 0},
+				{"text": "I don't want to.", "next": "interesting", "sentiment_change": 0}
+			],
+			"speed": 1
+		},
+		"poet": {
+			"text": "I  A L W A Y S  W A N T E D  T O   B E  A  P O E T . . .",
+			"action": ["waves", 0, "current", 0, 0, "set_state", "battle", "attack", "oil2", "attack", "oil1"],
+			"next": null,
+			"sentiment_change": 0,
+			"speed": 1
+		},
+		"interesting": {
+			"text": "I N T E R E S T I N G . . .",
+			"action": ["waves", 0, "current", 0, 0, "set_state", "battle", "attack", "oil2", "attack", "oil1"],
+			"next": null,
+			"sentiment_change": 0,
+			"speed": 1
+		},
+		"leave": {
+			"text": "W A I T",
+			"next": "leave1",
+			"sentiment_change": 0,
+			"speed": 0
+		},
+		"leave1": {
+			"text": "I  D O N T  W A N T  T O  K I L L  Y O U.",
+			"next": "leave2",
+			"sentiment_change": 0,
+			"speed": 1
+		},
+		"leave2": {
+			"text": "I  W A N T  T O  B E  A  P O E T.",
+			"next": "leave3",
+			"sentiment_change": 0,
+			"speed": 0
+		},
+		"leave2": {
+			"text": "T H A N K  Y O U  F O R  O P E N I N G  M Y  E Y E S",
+			"action": ["kill_boss"],
+			"next": null,
+			"sentiment_change": 0,
+			"speed": 1
+		},
+		"dying": {
+			"text": "Y O U  C A N T  K I L L  M E",
+			"next": "dying1",
+			"sentiment_change": 0,
+			"speed": 1
+		},
+		"dying1": {
+			"text": "I M  A  M A C H I N E ,  I D I O T",
+			"action": ["waves", 0, "current", 2, 0, "set_state", "battle", "attack", "oil2", "attack", "oil1"],
+			"next": null,
+			"sentiment_change": 0,
+			"speed": 1
+		},
+		"almost": {
+			"text": "O I L H A L L A  I S  W A I T I N G  F O R  M E",
+			"action": ["waves", 1, "current", 2, 0, "set_state", "battle", "attack", "oil3", "attack", "oil1", "attack", "oil2"],
+			"next": null,
+			"sentiment_change": 0,
+			"speed": 1
+		},
+		
+		"death": {
+			"text": "M U S T . . . . P U M P . . . . O I L . . . ",
+			"action": ["kill_boss"],
+			"next": null,
+			"sentiment_change": 0,
+			"speed": 0
+		},
+	}
+}

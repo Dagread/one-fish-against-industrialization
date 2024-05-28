@@ -1,0 +1,89 @@
+[gd_scene load_steps=2 format=3 uid="uid://wbuxhe6nc7s3"]
+
+[ext_resource type="PackedScene" uid="uid://c3psxrhl21w13" path="res://scenes/projectile.tscn" id="1_0g17p"]
+
+[node name="ProjectileSystem" type="Node2D"]
+
+[node name="Projectile" parent="." instance=ExtResource("1_0g17p")]
+position = Vector2(-24, -46)
+
+[node name="Projectile4" parent="." instance=ExtResource("1_0g17p")]
+position = Vector2(-70, -2)
+
+[node name="Projectile17" parent="Projectile4" instance=ExtResource("1_0g17p")]
+position = Vector2(214, -69)
+
+[node name="Projectile5" parent="Projectile4" instance=ExtResource("1_0g17p")]
+position = Vector2(26, 68)
+
+[node name="Projectile6" parent="Projectile4" instance=ExtResource("1_0g17p")]
+position = Vector2(-98, 171)
+
+[node name="Projectile9" parent="." instance=ExtResource("1_0g17p")]
+position = Vector2(-97, -53)
+
+[node name="Projectile10" parent="." instance=ExtResource("1_0g17p")]
+position = Vector2(-104, -100)
+
+[node name="Projectile9" parent="Projectile10" instance=ExtResource("1_0g17p")]
+position = Vector2(63, 101)
+
+[node name="Projectile10" parent="Projectile10" instance=ExtResource("1_0g17p")]
+position = Vector2(56, 54)
+
+[node name="Projectile11" parent="Projectile10" instance=ExtResource("1_0g17p")]
+position = Vector2(16, 82)
+
+[node name="Projectile15" parent="." instance=ExtResource("1_0g17p")]
+position = Vector2(116, 65)
+
+[node name="Projectile16" parent="." instance=ExtResource("1_0g17p")]
+position = Vector2(56, 54)
+
+[node name="Projectile" parent="Projectile16" instance=ExtResource("1_0g17p")]
+position = Vector2(-24, -46)
+
+[node name="Projectile13" parent="Projectile16" instance=ExtResource("1_0g17p")]
+position = Vector2(-52, 98)
+
+[node name="Projectile4" parent="Projectile16/Projectile13" instance=ExtResource("1_0g17p")]
+position = Vector2(-18, -100)
+
+[node name="Projectile12" parent="Projectile16/Projectile13" instance=ExtResource("1_0g17p")]
+position = Vector2(-61, -74)
+
+[node name="Projectile14" parent="Projectile16" instance=ExtResource("1_0g17p")]
+position = Vector2(33, 88)
+
+[node name="Projectile15" parent="Projectile16" instance=ExtResource("1_0g17p")]
+position = Vector2(116, 65)
+
+[node name="Projectile7" parent="Projectile16/Projectile15" instance=ExtResource("1_0g17p")]
+position = Vector2(-330, -49)
+
+[node name="Projectile8" parent="Projectile16/Projectile15" instance=ExtResource("1_0g17p")]
+position = Vector2(-354, -113)
+
+[node name="Projectile21" parent="Projectile16" instance=ExtResource("1_0g17p")]
+position = Vector2(-23, 34)
+
+[node name="Projectile2" parent="." instance=ExtResource("1_0g17p")]
+position = Vector2(44, -45)
+
+[node name="Projectile3" parent="." instance=ExtResource("1_0g17p")]
+position = Vector2(85, 19)
+
+[node name="Projectile18" parent="Projectile3" instance=ExtResource("1_0g17p")]
+position = Vector2(-229, -91)
+
+[node name="Projectile16" parent="Projectile3/Projectile18" instance=ExtResource("1_0g17p")]
+position = Vector2(344, 146)
+
+[node name="Projectile17" parent="Projectile3/Projectile18" instance=ExtResource("1_0g17p")]
+position = Vector2(344, 55)
+
+[node name="Projectile19" parent="Projectile3" instance=ExtResource("1_0g17p")]
+position = Vector2(-198, 5)
+
+[node name="Projectile20" parent="Projectile3" instance=ExtResource("1_0g17p")]
+position = Vector2(-137, 79)
